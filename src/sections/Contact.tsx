@@ -1,86 +1,117 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin, Copy, MessageCircle } from "lucide-react";
+
+const CONTACT_EMAIL = "briankimeli06@gmail.com";
+const WHATSAPP_NUMBER = "254746144228"; // No "+" prefix
 
 export default function Contact() {
+  const [status, setStatus] = useState<string | null>(null);
+
+  async function handleCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setStatus("✅ Email copied!");
+      setTimeout(() => setStatus(null), 2500);
+    } catch {
+      setStatus("⚠️ Copy failed. Try manually.");
+      setTimeout(() => setStatus(null), 3000);
+    }
+  }
+
   return (
     <section
       id="contact"
-      className="relative py-28 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-6 overflow-hidden"
-    >
-      {/* Glow effects */}
+      className="relative py-20 bg-gradient-to-b from-gray-900 to-gray-950 text-white px-6 overflow-hidden" >
+      {/* Glow Effect */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 25 }}
+      <div className="max-w-4xl mx-auto relative z-10">
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-        Let’s Connect
-        </motion.h2>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="text-lg md:text-xl text-gray-300 leading-relaxed mb-12"
-        >
-          I’m always open to exciting projects, collaborations, or even a quick
-          chat about tech, design, and AI.  
-          Drop me a line, I’ll get back to you soon.
-        </motion.p>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Let’s Connect
+          </h2>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
+            Whether you want to collaborate, share ideas, or just say hi —
+            I’m always open to meaningful conversations.
+          </p>
+        </motion.div>
 
         {/* Contact Card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          className="bg-gray-900/70 border border-gray-800 rounded-2xl shadow-xl p-10 backdrop-blur-md hover:border-blue-500/40 transition"
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="bg-gray-900/70 border border-gray-800 rounded-3xl shadow-2xl p-8 backdrop-blur-md flex flex-col gap-8"
         >
-          <motion.a
-            href="mailto:briankimeli.dev@gmail.com"
-            className="inline-flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Mail className="w-5 h-5" /> briankimeli06@gmail.com
-          </motion.a>
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-medium px-5 py-3 rounded-full transition w-full sm:w-auto"
+            >
+              <Mail className="w-4 h-4" /> Email Me
+            </a>
 
-          <div className="flex justify-center gap-8 mt-10">
-            <motion.a
+            <button
+              onClick={handleCopyEmail}
+              className="inline-flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-200 px-5 py-3 rounded-full border border-gray-700 transition w-full sm:w-auto"
+            >
+              <Copy className="w-4 h-4" /> Copy Email
+            </button>
+
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-full transition w-full sm:w-auto"
+            >
+              <MessageCircle className="w-4 h-4" /> WhatsApp
+            </a>
+          </div>
+
+          {status && (
+            <p className="text-center text-sm text-green-400">{status}</p>
+          )}
+
+          {/* Socials */}
+          <div className="flex justify-center gap-5 mt-4">
+            <a
               href="https://github.com/BrianKimeli"
               target="_blank"
-              whileHover={{ scale: 1.1 }}
+              rel="noreferrer"
               className="p-3 rounded-full bg-gray-800 hover:bg-blue-500/20 transition"
+              aria-label="GitHub"
             >
               <Github className="w-6 h-6 text-gray-300 hover:text-blue-400" />
-            </motion.a>
-            <motion.a
+            </a>
+
+            <a
               href="https://linkedin.com/in/briankimeli"
               target="_blank"
-              whileHover={{ scale: 1.1 }}
+              rel="noreferrer"
               className="p-3 rounded-full bg-gray-800 hover:bg-blue-500/20 transition"
+              aria-label="LinkedIn"
             >
               <Linkedin className="w-6 h-6 text-gray-300 hover:text-blue-400" />
-            </motion.a>
+            </a>
           </div>
         </motion.div>
 
-        {/* Footer text */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.7 }}
-          className="text-gray-500 mt-16 text-sm"
-        >
-          © {new Date().getFullYear()} Brian Kimeli - Finesse
-        </motion.p>
+        {/* Copyright Footer */}
+        <div className="mt-10 text-center text-gray-500 text-sm">
+          © {new Date().getFullYear()}{" "}
+          <span>Brian Kimeli - Finesse</span>
+        </div>
       </div>
     </section>
   );

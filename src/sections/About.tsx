@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 bg-gray-900 text-white px-6 border-t border-gray-800"
+      className="py-20 bg-gradient-to-b from-gray-900 to-gray-950 text-white px-6 border-t border-gray-800"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
