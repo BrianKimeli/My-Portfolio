@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center h-screen bg-gradient-to-b from-gray-950 to-gray-900 text-white px-6 md:px-16">
+  <section id="hero" className="flex flex-col md:flex-row items-center justify-center h-screen bg-gradient-to-b from-gray-950 to-gray-900 text-white px-6 md:px-16">
       {/* Profile Image (Left Side) */}
       <motion.div
         initial={{ opacity: 0, x: -40 }}

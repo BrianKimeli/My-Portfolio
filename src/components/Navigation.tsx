@@ -23,9 +23,19 @@ export default function Navigation() {
           transition={{ duration: 0.4 }}
           className="fixed top-0 left-0 w-full bg-gray-900/80 backdrop-blur-md text-white py-4 px-6 flex justify-between items-center shadow-lg z-50"
         >
-          <h1 className="font-bold text-lg tracking-tight text-blue-400">
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("hero");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+              else window.location.href = "#hero";
+            }}
+            className="font-bold text-lg tracking-tight text-blue-400 hover:opacity-90 transition"
+            aria-label="Go to top / hero section"
+          >
             Brian Kimeli
-          </h1>
+          </a>
 
           <ul className="flex gap-6 text-sm font-medium">
             <li><a href="#about" className="hover:text-blue-400 transition">About</a></li>
