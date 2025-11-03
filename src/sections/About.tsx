@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Code, Rocket } from "lucide-react";
+import { GraduationCap, Briefcase, Code } from "lucide-react";
 
 const timeline = [
   {
@@ -102,7 +102,7 @@ export default function About() {
         className="text-center mt-24 max-w-3xl mx-auto"
       >
         <p className="text-lg text-gray-300 leading-relaxed mb-8">
-          I'm now exploring how <span className="text-blue-400 font-medium">AI, Android, and IoT</span> can merge to create connected, intelligent systems that sense, learn, and respond to their environment. I actively seek opportunities to push these boundaries further.
+          I&apos;m now exploring how <span className="text-blue-400 font-medium">AI, Android, and IoT</span> can merge to create connected, intelligent systems that sense, learn, and respond to their environment. I actively seek opportunities to push these boundaries further.
         </p>
         <motion.a
           href="#skills"
