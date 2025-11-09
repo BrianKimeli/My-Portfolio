@@ -22,13 +22,16 @@ export default function Navigation() {
   }, [isMobileMenuOpen]); // Dependency added for isMobileMenuOpen
 
   // Utility function to handle closing the menu after a link is clicked
-  const handleLinkClick = (e, targetId) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    targetId: string
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false); // Close mobile menu immediately
 
     const targetElementId = targetId.substring(1);
     const el = document.getElementById(targetElementId);
-    
+
     // Check if the element exists
     if (el) {
       // Scroll smoothly to the element
@@ -36,15 +39,19 @@ export default function Navigation() {
 
       // Manually update the URL hash.
       setTimeout(() => {
-          // Check if we are at the top/hero section.
-          if (targetId === '#hero') {
-             window.history.pushState("", document.title, window.location.pathname + window.location.search);
-          } else {
-             window.location.hash = targetId;
-          }
+        // Check if we are at the top/hero section.
+        if (targetId === "#hero") {
+          window.history.pushState(
+            "",
+            document.title,
+            window.location.pathname + window.location.search
+          );
+        } else {
+          window.location.hash = targetId;
+        }
       }, 400); // 400ms delay matches the motion transition duration and allows scroll to start
     } else {
-      // Fallback navigation if element not found 
+      // Fallback navigation if element not found
       window.location.href = targetId;
     }
   };
