@@ -32,7 +32,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-gradient-to-b from-gray-900 to-gray-950 text-white px-6 relative overflow-hidden border-t border-gray-800"
+      className="py-24 bg-gradient-to-b from-gray-900 to-gray-950 text-white px-6 relative overflow-hidden"
     >
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
